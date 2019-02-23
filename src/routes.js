@@ -1,4 +1,3 @@
-const imagePath = "public/photos/";
 import multer from 'multer';
 import sleep from 'system-sleep';
 import { changePhoto, getPhotoImage, batchInsertContacts, contactsAll, contactOne, searchContact, insertContact, updateContact, deleteContact } from './db';

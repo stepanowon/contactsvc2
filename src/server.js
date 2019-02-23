@@ -13,7 +13,9 @@ app.use(cors());
 app.enable("jsonp callback");   //jsonp 지원
 //-- 로깅
 
-const logDirectory = path.join(__dirname, 'log')
+var baseDir = path.resolve('.');
+
+const logDirectory = path.join(baseDir, '/log')
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
 var accessLogStream = rfs('access.log', {
   interval: '1d', // 매일 매일 로그 파일 생성
@@ -23,8 +25,9 @@ app.use(morgan('combined', {stream: accessLogStream}))
 
 app.set('port', (process.env.PORT || 3000));
 
-app.use(express.static('public'));
-app.set('views', __dirname + '/views');
+app.use(express.static(baseDir + '/public'));
+console.log(baseDir + '/views');
+app.set('views', baseDir + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.use(bodyParser.json());
