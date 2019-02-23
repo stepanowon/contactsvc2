@@ -58,7 +58,10 @@
             <li>
                 <a href="#a10" onclick=$("#menu-close").click();>GET /contacts_long/search/:name</a>
             </li>
-        </ul>
+             <li>
+                <a href="/console"><b>[ 연락처 서비스 v2.0 API Console ]</b></a>
+            </li>    
+	</ul>
     </nav>
 
     <!-- Header -->
@@ -70,9 +73,8 @@
                 <div style="text-align: left; margin:20px 50px 20px 50px ">
                     <ul>
                         <li>간단한 RESTful Service 예제입니다. 내용은 사이드 메뉴를 열어서 확인하세요.</li>
-                        <li>사진 정보를 변경할 수 있도록 업로드 기능을 추가하였습니다.</li>
-                        <li>자세한 사용 방법은 http://sample.bmaster.kro.kr 을 참조하세요.</li>
-                        <li>JSONP 지원(O)</li>
+						<li>연락처 데이터는 매일 새벽2시에 초기화되어 100건만 남습니다.</li>
+                        <li>JSONP 지원(O), CORS 지원(O)</li>
                     </ul>
                 </div>
             </div>
@@ -108,12 +110,24 @@
                         <div>- 응답데이터 형식</div>
                         <pre>
 {
-    "pageno":1,
-    "pagesize":2,
-    "totalcount":100,
-    "contacts":[
-        {"no":100,"name":"Jordyn","tel":"010-3456-8299","address":"서울시","photo":"http://sample.bmaster.kro.kr/photos/100.jpg"},
-        {"no":99,"name":"Cassidy","tel":"010-3456-8298","address":"서울시","photo":"http://sample.bmaster.kro.kr/photos/99.jpg"}
+    "pageno": 1,
+    "pagesize": 2,
+    "totalcount": 103,
+    "contacts": [
+        {
+            "no": "5c7129de4840822eb4d2c26a",
+            "name": "트럼프",
+            "tel": "010-2222-3333",
+            "address": "서울시",
+            "photo": "http://localhost:3000/photos/LUgMVPm0Q"
+        },
+        {
+            "no": "5c7129de4840822eb4d2c269",
+            "name": "샌더스",
+            "tel": "010-2222-3332",
+            "address": "서울시",
+            "photo": "http://localhost:3000/photos/nOF1rSRft"
+        }
     ]
 }</pre>
                     </p>
@@ -149,13 +163,18 @@
                         </ul>
                         <div>- 응답데이터 형식</div>
                         <pre>
-
 {
-    "no":100,
-    "name":"Cassidy",
-    "tel":"010-3456-8299",
-    "address":"서울시",
-    "photo":"http://sample.bmaster.kro.kr/photos/100.jpg"
+    "name": "샌더스",
+    "tel": "010-2222-3332",
+    "address": "서울시",
+    "photo": "http://localhost:3000/photos/nOF1rSRft",
+    "no": "5c7129de4840822eb4d2c269"
+}</pre>
+                        <div>- 응답데이터 형식(실패)</div>
+                        <pre>
+{
+    "status": "fail",
+    "message": "연락처 정보 없음"
 }</pre>
                     </p>
                 </div>
@@ -191,9 +210,20 @@
                         <div>- 응답데이터 형식</div>
                         <pre>
 [
-   {"no":49,"name":"Jordan Kelly","tel":"010-3456-8248","address":"서울시","photo":"http://localhost/photos/49.jpg"},
-   {"no":95,"name":"Jocelyn Smith","tel":"010-3456-8294","address":"서울시","photo":"http://localhost/photos/95.jpg"},
-   {"no":100,"name":"Jordyn Baker","tel":"010-3456-8299","address":"서울시","photo":"http://localhost/photos/100.jpg"}
+    {
+        "no": "5c7129c600c812065c3964e0",
+        "name": "Rachel Johnson",
+        "tel": "010-3456-8225",
+        "address": "서울시",
+        "photo": "http://localhost:3000/photos/YKPoqQqkkKu"
+    },
+    {
+        "no": "5c7129c600c812065c396506",
+        "name": "Rosebud Jones",
+        "tel": "010-3456-8263",
+        "address": "서울시",
+        "photo": "http://localhost:3000/photos/4wXGJU4i1G"
+    }
 ]</pre>
                     </p>
                 </div>
@@ -238,9 +268,9 @@ name=....&tel=....&address=....</pre>
                         <div>- 응답데이터 형식(성공)</div>
                         <pre>
 {
-   "status": "success",
-   "message": "No(1491372229443) 데이터 추가 성공!!",
-   "no": 1491372229443
+    "status": "ok",
+    "message": "연락처 추가 성공",
+    "no": "5c713b495489753ce808e673"
 }</pre>
                         <div>- 응답데이터 형식(실패)</div>
                         <pre>
@@ -280,8 +310,8 @@ name=....&tel=....&address=....</pre>
                         </ul>
                         <div>- 요청 형식(conent-type:application/json 인 경우)</div>
                         <pre>
+PUT /contacts/5c7144886484aa140412f884
 {
-    "no" : 1491350298389,
     "name":"강감찬",
     "tel":"010-2222-3339",
     "address":"서울시"
@@ -292,9 +322,9 @@ no=...&name=....&tel=....&address=....</pre>
                         <div>- 응답데이터 형식(성공)</div>
                         <pre>
 {
-   "status": "success",
-   "message": "No(1491372229443) 데이터 변경 성공!!",
-   "no": 1491372229443
+    "status": "success",
+    "message": "업데이트 성공",
+    "no": "5c7144886484aa140412f884"
 }</pre>
                         <div>- 응답데이터 형식(실패)</div>
                         <pre>
@@ -337,8 +367,8 @@ no=...&name=....&tel=....&address=....</pre>
                         <pre>
 {
    "status": "success",
-   "message": "No(1491372229443) 데이터 삭제 성공!!",
-   "no" : 1491372229443
+   "message": "삭제 성공",
+   "no" : "5c7144886484aa140412f884"
 }</pre>
                         <div>- 응답데이터 형식(실패)</div>
                         <pre>
@@ -380,13 +410,13 @@ no=...&name=....&tel=....&address=....</pre>
                         <div>- 응답데이터 형식(성공)</div>
                         <pre>
 {
-  "status": "success",
-  "message": "3건 데이터 추가 성공!!",
-  "no": [
-    1491588016908,
-    1491588016909,
-    1491588016910
-  ]
+    "status": "ok",
+    "message": "3건의 데이터 추가 성공",
+    "no": [
+        "5c7144886484aa140412f882",
+        "5c7144886484aa140412f883",
+        "5c7144886484aa140412f884"
+    ]
 }</pre>
                         <div>- 응답데이터 형식(실패)</div>
                         <pre>
@@ -429,16 +459,31 @@ no=...&name=....&tel=....&address=....</pre>
                         <div>- 응답데이터 형식(성공)</div>
                         <pre>
 {
-  "status": "success",
-  "message": "No(1491586656774) 사진 변경 성공!!",
-  "no": "1491586656774"
+    "status": "success",
+    "message": "사진 변경 성공 => photo_id : ihAmNA6fM",
+    "no": "5c7144886484aa140412f884"
 }</pre>
                         <div>- 응답데이터 형식(실패)</div>
                         <pre>
 {
-  "status": "fail",
-  "message": "no에 해당하는 연락처 정보 없음"
+    "status": "fail",
+    "message": "[에러메시지]"
 }</pre>
+                        <div>- AJAX 요청 예제(axios 사용)</div>
+                        <pre>
+//자세한 예제는 https://github.com/mzabriskie/axios/blob/master/examples/upload/index.html 참조
+import axios from 'axios';
+
+var data = new FormData();
+data.append('photo', document.getElementById('photo').files[0]);
+
+axios.post('/api/contacts/' + no + '/photo', data)
+.then((response) => {
+    console.log(response);
+})
+.catch((ex) => {
+    console.log('updatePhoto failed', ex);
+});</pre>
                     </p>
                 </div>
             </div>
@@ -476,12 +521,24 @@ no=...&name=....&tel=....&address=....</pre>
                         <div>- 응답데이터 형식</div>
                         <pre>
 {
-    "pageno":1,
-    "pagesize":2,
-    "totalcount":100,
-    "contacts":[
-        {"no":100,"name":"Jordyn","tel":"010-3456-8299","address":"서울시","photo":"http://sample.bmaster.kro.kr/photos/100.jpg"},
-        {"no":99,"name":"Cassidy","tel":"010-3456-8298","address":"서울시","photo":"http://sample.bmaster.kro.kr/photos/99.jpg"}
+    "pageno": 1,
+    "pagesize": 2,
+    "totalcount": 106,
+    "contacts": [
+        {
+            "no": "5c7144886484aa140412f884",
+            "name": "모모",
+            "tel": "010-9999-9999",
+            "address": "제주",
+            "photo": "http://localhost:3000/photos/kVUsltfiG"
+        },
+        {
+            "no": "5c7144886484aa140412f883",
+            "name": "정연",
+            "tel": "010-2222-3332",
+            "address": "서울시",
+            "photo": "http://localhost:3000/photos/noimage"
+        }
     ]
 }</pre>
                     </p>
@@ -518,9 +575,20 @@ no=...&name=....&tel=....&address=....</pre>
                         <div>- 응답데이터 형식</div>
                         <pre>
 [
-   {"no":49,"name":"Jordan Kelly","tel":"010-3456-8248","address":"서울시","photo":"http://localhost/photos/49.jpg"},
-   {"no":95,"name":"Jocelyn Smith","tel":"010-3456-8294","address":"서울시","photo":"http://localhost/photos/95.jpg"},
-   {"no":100,"name":"Jordyn Baker","tel":"010-3456-8299","address":"서울시","photo":"http://localhost/photos/100.jpg"}
+    {
+        "no": "5c7129c600c812065c3964e0",
+        "name": "Rachel Johnson",
+        "tel": "010-3456-8225",
+        "address": "서울시",
+        "photo": "http://localhost:3000/photos/YKPoqQqkkKu"
+    },
+    {
+        "no": "5c7129c600c812065c396506",
+        "name": "Rosebud Jones",
+        "tel": "010-3456-8263",
+        "address": "서울시",
+        "photo": "http://localhost:3000/photos/4wXGJU4i1G"
+    }
 ]</pre>
                     </p>
                 </div>
