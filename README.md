@@ -5,8 +5,9 @@
 * stepanowon@hotmail.com
 * 서버 시작
 ```
+npm install -g nodemon
 npm install
-npm run start
+npm run start-dev
 ```
 
 > Online Demo1 : http://sample.bmaster.kro.kr  
