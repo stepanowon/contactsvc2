@@ -10,8 +10,7 @@ npm install
 npm run start-dev
 ```
 
-> Online Demo1 : http://sample.bmaster.kro.kr  
-> API Console : http://sample.bmaster.kro.kr/console
+> Online Demo1 : http://sample.bmaster.kro.kr:8000  
+> API Console : http://sample.bmaster.kro.kr:8000/console
 
-> Online Demo2(HTTPS) : https://contactsvc.herokuapp.com   
  
