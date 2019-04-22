@@ -12,7 +12,6 @@ const app = express();
 app.use(cors());
 app.enable("jsonp callback");   //jsonp 지원
 //-- 로깅
-
 var baseDir = path.resolve('.');
 
 const logDirectory = path.join(baseDir, '/log')
@@ -34,6 +33,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(function (req, res, next) {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
+    next()
+});
 
 routes(app);
 
