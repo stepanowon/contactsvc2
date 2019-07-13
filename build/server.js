@@ -34,6 +34,14 @@ const app = (0, _express2.default)();
 
 app.use((0, _cors2.default)());
 app.enable("jsonp callback"); //jsonp 지원
+
+app.use(function (req, res, next) {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
+    next();
+});
+
 //-- 로깅
 var baseDir = _path2.default.resolve('.');
 
