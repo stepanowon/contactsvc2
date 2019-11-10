@@ -8,8 +8,4 @@ npm install -g nodemon
 npm install
 npm run start-dev
 ```
-
-> Online Demo1 : http://sample.bmaster.kro.kr:8000  
-> API Console : http://sample.bmaster.kro.kr:8000/console
-
  
