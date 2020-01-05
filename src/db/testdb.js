@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })
+var url = "mongodb://localhost:27017/test";
+mongoose.connect(url, { useNewUrlParser: true })
 //mlab 연결정보
 //mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 

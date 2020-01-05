@@ -8,9 +8,9 @@ var _multer = require('multer');
 
 var _multer2 = _interopRequireDefault(_multer);
 
-var _systemSleep = require('system-sleep');
+var _sleepPromise = require('sleep-promise');
 
-var _systemSleep2 = _interopRequireDefault(_systemSleep);
+var _sleepPromise2 = _interopRequireDefault(_sleepPromise);
 
 var _db = require('./db');
 
@@ -79,7 +79,7 @@ exports.default = app => {
     app.get('/contacts_long', (() => {
         var _ref3 = _asyncToGenerator(function* (req, res) {
             console.log("### GET /contacts_long");
-            (0, _systemSleep2.default)(1000);
+            yield (0, _sleepPromise2.default)(1000);
             const baseUrl = getBaseUrl(req);
             let pageno = parseInt(req.query.pageno);
             let pagesize = parseInt(req.query.pagesize);
@@ -137,8 +137,8 @@ exports.default = app => {
                 err.status = 400;
                 next(err);
             }
-            (0, _systemSleep2.default)(1000);
             console.log("### GET /contacts/search/:name");
+            yield (0, _sleepPromise2.default)(1000);
             const baseUrl = getBaseUrl(req);
             const contacts = yield (0, _db.searchContact)({ name, baseUrl });
             res.jsonp(contacts);

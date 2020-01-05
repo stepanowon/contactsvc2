@@ -11,7 +11,8 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_mongoose2.default.connect('mongodb://localhost:27017/test', { useNewUrlParser: true });
+var url = "mongodb://localhost:27017/test";
+_mongoose2.default.connect(url, { useNewUrlParser: true });
 //mlab 연결정보
 //mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 

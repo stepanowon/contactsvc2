@@ -4,7 +4,6 @@ import cors from 'cors';
 import morgan from 'cors';
 import path from 'path';
 import fs from 'fs';
-import rfs from 'rotating-file-stream';
 import routes from './routes';
 
 const app = express();
@@ -24,7 +23,8 @@ var baseDir = path.resolve('.');
 
 const logDirectory = path.join(baseDir, '/log')
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
-var accessLogStream = rfs('access.log', {
+const rfs = require("rotating-file-stream");
+var accessLogStream = rfs.createStream('access.log', {
   interval: '1d', // 매일 매일 로그 파일 생성
   path: logDirectory
 })

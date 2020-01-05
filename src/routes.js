@@ -1,5 +1,5 @@
 import multer from 'multer';
-import sleep from 'system-sleep';
+import sleep from 'sleep-promise';
 import { changePhoto, getPhotoImage, batchInsertContacts, contactsAll, contactOne, searchContact, insertContact, updateContact, deleteContact } from './db';
 
 
@@ -49,7 +49,7 @@ export default (app) => {
 
     app.get('/contacts_long', async (req, res) => {
         console.log("### GET /contacts_long");
-        sleep(1000);
+        await sleep(1000)
         const baseUrl = getBaseUrl(req);
         let pageno = parseInt(req.query.pageno);
         let pagesize = parseInt(req.query.pagesize);
@@ -92,11 +92,12 @@ export default (app) => {
             err.status = 400;
             next(err);
         }
-        sleep(1000);
         console.log("### GET /contacts/search/:name")
+        await sleep(1000);
         const baseUrl = getBaseUrl(req);
         const contacts = await searchContact({ name, baseUrl })
         res.jsonp(contacts);
+        
     });
 
     app.post('/contacts', async (req,res) => {

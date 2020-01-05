@@ -20,10 +20,6 @@ var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _rotatingFileStream = require('rotating-file-stream');
-
-var _rotatingFileStream2 = _interopRequireDefault(_rotatingFileStream);
-
 var _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
@@ -47,7 +43,8 @@ var baseDir = _path2.default.resolve('.');
 
 const logDirectory = _path2.default.join(baseDir, '/log');
 _fs2.default.existsSync(logDirectory) || _fs2.default.mkdirSync(logDirectory);
-var accessLogStream = (0, _rotatingFileStream2.default)('access.log', {
+const rfs = require("rotating-file-stream");
+var accessLogStream = rfs.createStream('access.log', {
     interval: '1d', // 매일 매일 로그 파일 생성
     path: logDirectory
 });
