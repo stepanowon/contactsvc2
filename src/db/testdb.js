@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
 
-var url = "mongodb://localhost:27017/test";
-mongoose.connect(url, { useNewUrlParser: true })
-//mlab 연결정보
-//mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+let url;
+if (process.env.MONGODB_URI) {
+    url = process.env.MONGODB_URI;
+} else {
+    url = "mongodb://localhost:27017/test";
+}
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const contactSchema = new mongoose.Schema({
     _id : String, 
