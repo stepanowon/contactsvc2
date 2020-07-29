@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>소스코드 라인번호 매기기</title>
     <style>
         #leftbox, #rightbox { width:40%; height:80%; padding:10px 10px 10px 10px;}
         #container { width:90%; margin:10px 10px 10px 10px; height:500px; }
@@ -41,6 +41,8 @@
             var lines = linedText.split("\n");
             var totalLine = lines.length;
             var delLineNumberCount = (totalLine + "").length;
+            if (delLineNumberCount < 2)
+                delLineNumberCount = 2;
 
             for (var i=0; i < lines.length; i++) {
                 lines[i] = lines[i].substring(delLineNumberCount+1)
