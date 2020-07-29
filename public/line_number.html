@@ -31,7 +31,7 @@
                 for (var j=0; j < addZero; j++) {
                     current = "0" + current;
                 }
-                lines[i] = current + ":" + lines[i].replace('\t', tabString);
+                lines[i] = current + ": " + lines[i].replace('\t', tabString);
             }
             var textLined = lines.join("\n");
             $("#right").val(textLined)
@@ -46,7 +46,7 @@
                 delLineNumberCount = 2;
 
             for (var i=0; i < lines.length; i++) {
-                lines[i] = lines[i].substring(delLineNumberCount+1)
+                lines[i] = lines[i].substring(delLineNumberCount+2)
             }
             var textLined = lines.join("\n");
             $("#left").val(textLined)
