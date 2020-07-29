@@ -23,6 +23,7 @@
             var lines = text.split("\n");
             var totalLine = lines.length+1;
             var maxCut = (totalLine + "").length;
+            if (maxCut < 2) maxCut = 2;
 
             for (var i=0; i < lines.length; i++) {
                 var current = (i+1) + "";
