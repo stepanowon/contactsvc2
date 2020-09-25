@@ -7,7 +7,7 @@
     },
     "host": "contactsvc2.vercel.app",
     "schemes": [
-        "http"
+        "https"
     ],
     "basePath": "/",
     "produces": [
