@@ -73,4 +73,4 @@ app.use(function (req, res, next) {
 const server = app.listen(app.get('port'), function () {
     console.log("연락처 서비스가 " + app.get('port') + "번 포트에서 시작되었습니다!");
 });
-//# sourceMappingURL=server.js.map
+//# sourceMappingURL=index.js.map

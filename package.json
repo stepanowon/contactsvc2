@@ -9,8 +9,8 @@
     "clean": "rimraf ./build/*",
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
-    "start": "npm run build & node ./build/server.js",
-    "start-dev": "nodemon --exec babel-node ./src/server.js"
+    "start": "node ./build/index.js",
+    "start-dev": "nodemon --exec babel-node ./src/index.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
