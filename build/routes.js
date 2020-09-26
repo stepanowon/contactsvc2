@@ -31,7 +31,9 @@ String.prototype.hashCode = function () {
     return hash;
 };
 
-const getBaseUrl = req => req.protocol + "://" + req.get('host');
+const getBaseUrl = req => {
+    if (req.hostname === "localhost" || req.hostname === "127.0.0.1") return req.protocol + "://" + req.hostname;else return "https://" + req.hostname;
+};
 const upload = (0, _multer2.default)({ storage: _multer2.default.memoryStorage() });
 
 exports.default = app => {
